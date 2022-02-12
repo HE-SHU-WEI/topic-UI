@@ -1,0 +1,11 @@
+/*背景*/
+.back{
+    background-image: url("picture/background.jpg");
+    background-size: cover;
+}
+
+/*輸入欄位*/
+.in{
+    background-color: rgba(255, 255, 255,0.7); 
+    width: 400px;
+}

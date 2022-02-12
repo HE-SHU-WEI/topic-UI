@@ -1,0 +1,69 @@
+.fky{
+    font-size: xx-large;
+}
+.m{
+    width: 40%;
+    height: 40%;
+}
+
+label{
+    font-size: 0.7em;
+}
+span{
+    font-size:xx-small;
+}
+
+/*logo*/
+.logo{
+    width: 10%;
+    height: 10%;
+}
+
+.person_icon{
+    width: 3%;
+    height: 3%;
+}
+
+/*center*/
+.center{
+    margin-left: 45px;
+}
+/*輸入的框框*/
+.input_style{
+    width: 200px;
+    height: 30px;
+    z-index: 0;
+
+}
+
+/*定義方框*/
+.mobile-box {
+    padding-bottom: 20px;
+    background-color: rgba(226, 164, 164, 0.9);
+    margin: 30px auto 10px;
+    width: 30%;
+    font-family: Arial;
+    font-size: 1.2em;
+    font-weight: bold;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+.user-index{
+    padding-bottom: 20px;
+    background-color: rgba(226, 164, 0, 0.9);
+    margin: 30px auto 10px;
+    width: 50%;
+    font-family: Arial;
+    font-size: 1.2em;
+    font-weight: bold;
+    /*-webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    /*border-radius: 30px;*/
+    border-color: black;
+    border-style:solid;
+    padding:5px;
+}
+
+
+
