@@ -4,7 +4,7 @@
 //  狀態：待更改
 //
 //
-/*
+
 //資料庫的位置
 define('DB_HOST', 'localhost');
 //使用者名稱
@@ -15,7 +15,7 @@ define('DB_PASSWORD', '');
 define('DB_NAME','teacher') ;
 
 define('con_year' , 110);
-*/
+
 //---------------------------
 $server_name = 'localhost';
 $username = 'root';

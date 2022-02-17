@@ -19,6 +19,6 @@
 <body>
     <?=$_SESSION['welocme'];?>
     <input type="button" value="登出"  onclick="location.href='logOut.php'">
-    <input type="button" value="登入"  onclick="location.href='logIn.php'">
+    <input type="button" value="登入"  onclick="location.href='test.php'">
 </body>
 </html>

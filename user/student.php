@@ -88,7 +88,9 @@ table{
                 if ($row['year'] == $_POST['year']){
                     // 讓表格用foreach輸出內容
                     echo  '<tr>'.'<td>'.$row['year'].'</td>'
-                                ."<td><a href = '#search?order=".$row['class_name']."'>".$row['class_name']."</a></td>"
+                                 ."<td><a href = '#search?order=".$row['class_name']."'>".$row['class_name']."</a></td>"
+                                 
+                                
                                 .'<td>'.$row['season'].'</td>'.'<td>'
                                 .'</td>'.'</tr>';}}?>
             
@@ -97,22 +99,27 @@ table{
     
 </div>
 
-</body>
-</html>
+
 
 
 <!-- 按下查詢課程後 -->
 
-<?php
-$row['class_name']='資料庫程式設計';
-$search= $conn ->query("SELECT * FROM `".'點名_'.$row['class_name']."` where name='".$_SESSION['username']."'");
-    $resultsearch = $search ->fetchAll();
+<div id='search'>
+    <?php
+    $row['class_name']='資料庫程式設計';
+    $search= $conn ->query("SELECT * FROM `".'點名_'.$row['class_name']."` where name='".$_SESSION['username']."'");
+        $resultsearch = $search ->fetchAll();
 
-$table = "<table border=1 id='search'><tr><td>學生ID</td><td>學生姓名</td><td>出席</td><td>心情</td><td>時間</td></tr>"; 
-        foreach($resultsearch as $v)
-        {
-            $table .= "<tr><td>".$v['id']."</td><td>".$v['name']."</td><td>".$v['attend']."</td><td>".$v['mood']."</td><td>".$v['time']."</td></tr>";
-        }
-        $table .= "</table>";
-        echo $table;
-?>
+    $table = "<table border=1 id='search'><tr><td>學生ID</td><td>學生姓名</td><td>出席</td><td>心情</td><td>時間</td></tr>"; 
+            foreach($resultsearch as $v)
+            {
+                $table .= "<tr><td>".$v['id']."</td><td>".$v['name']."</td><td>".$v['attend']."</td><td>".$v['mood']."</td><td>".$v['time']."</td></tr>";
+            }
+            $table .= "</table>";
+            echo $table;
+    ?>
+</div>
+
+
+</body>
+</html>
