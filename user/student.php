@@ -15,9 +15,9 @@ try {
         $txt =  '你好，'.$_SESSION['username']. '同學<br>';
         $logout =  '<a href="/test/logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
-        $translate = $conn ->prepare("SELECT * , CASE season     
-            WHEN 0 THEN '上學期'  
-            WHEN 1 THEN '下學期' 
+        $translate = $conn ->prepare("SELECT * , CASE season
+                 WHEN 0 THEN '上學期'  
+                 else '下學期' 
             END 
             FROM $n
             ORDER BY student_name;");
@@ -62,7 +62,7 @@ table{
         <?=$logout;?>
     </div>
     </div>
-    
+    <!-- ------------------------------------ -->
     <div style="width: 100%;display: inline-block;text-align: center;">
         <div class="user-index">選擇學年
         <select name="year" onchange="submit();">
@@ -71,14 +71,33 @@ table{
                  echo  '<option selected=selected >'. $_POST['year'].'</option>';
                 foreach ($result as $row){
                     $tmp = $row["year"];
-                    if ($t!=$row["year"]){
+                    if ($classname!=$row["year"]){
                         echo '<option name="meal" value="',$row["year"],'"> ',$row["year"],'</option>';
-                    }$t = $tmp;
+                    }$year = $tmp;
                     
                 }
             ?>
             </select>
         </div>
+        <!-- ---------------------------------- -->
+        <div style="width: 100%;display: inline-block;text-align: center;">
+        <div class="user-index">選擇要查詢的課程
+        <select name="class_name" onchange="submit();">
+            <?php
+                 $tmp;
+                 echo  '<option selected=selected >'. $_POST['class_name'].'</option>';
+                 
+                    foreach ($result as $row){
+                        $tmp = $row["class_name"];
+                        if($row['year']==$year){
+                                echo '<option name="meal" value="',$row["class_name"],'"> ',$row["class_name"],'</option>';
+                            $classname = $tmp;}
+                        
+                    }
+            ?>
+            </select>
+        </div>
+        <!-- ------------------------------------------- -->
     </div>
 <div style="margin-left: 40%;">
     <table   rules="all"; >
@@ -88,11 +107,11 @@ table{
                 if ($row['year'] == $_POST['year']){
                     // 讓表格用foreach輸出內容
                     echo  '<tr>'.'<td>'.$row['year'].'</td>'
-                                 ."<td><a href = '#search?order=".$row['class_name']."'>".$row['class_name']."</a></td>"
-                                 
+                                .'<td><a href = "#search?order='.$row['class_name'].'">'.$row['class_name'].'</a></td>'
+                                .'<td>'.$row['season'].'</td>'.'</tr>';}}
                                 
-                                .'<td>'.$row['season'].'</td>'.'<td>'
-                                .'</td>'.'</tr>';}}?>
+                                ?>
+                                
             
         
     </table>

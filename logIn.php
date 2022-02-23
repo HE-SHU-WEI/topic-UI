@@ -12,7 +12,8 @@
 //如果使用者未登入，即未設定$_SESSION['user_id']時，執行以下程式碼
     if(!isset($_SESSION['user_id'])){
         if(isset($_POST['submit'])){//使用者提交登入表單時執行如下程式碼
-            $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+            $conn = $dbc;
+            // $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
             mysqli_query($dbc,"SET NAMES utf8");
             $user_username = mysqli_real_escape_string($dbc,trim($_POST['userID']));
             $user_password = mysqli_real_escape_string($dbc,trim($_POST['password']));
