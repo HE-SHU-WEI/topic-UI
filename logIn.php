@@ -5,32 +5,36 @@
 //
 //
 //插入連線資料庫的相關資訊
+
     require_once 'conn.php';
 //開啟一個會話
     session_start();
     $error_msg = "";
+    echo $_SESSION['user_id'];
 //如果使用者未登入，即未設定$_SESSION['user_id']時，執行以下程式碼
-    if(!isset($_SESSION['user_id'])){
-        if(isset($_POST['submit'])){//使用者提交登入表單時執行如下程式碼
-            $conn = $dbc;
+    if(!empty($_SESSION['user_id'])){
+        if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼            
             // $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
-            mysqli_query($dbc,"SET NAMES utf8");
-            $user_username = mysqli_real_escape_string($dbc,trim($_POST['userID']));
-            $user_password = mysqli_real_escape_string($dbc,trim($_POST['password']));
+            // mysqli_query($dbc,"SET NAMES utf8");
+            $user_username = mysqli_real_escape_string($conn,trim($_POST['userID']));
+            $user_password = mysqli_real_escape_string($conn,trim($_POST['password']));
+            
 
             if(!empty($user_username)&&!empty($user_password)){
                 $query = "SELECT * FROM user WHERE account = '$user_username' AND "."passW = '$user_password'";
                
                 //用使用者名稱和密碼進行查詢
-                $data = mysqli_query($dbc,$query);
+                $data = mysqli_query($conn,$query);
                     //若查到的記錄正好為一條，則設定SESSION，同時進行頁面重定向
                     if(mysqli_num_rows($data)==1){
                         $row = mysqli_fetch_array($data);
                         $_SESSION['username'] = $row['realN'];
                         $_SESSION['user_id'] = $row['id'];
                         if($row['account'][0] != 'A'){
+                            
                             $home_url = 'user/teacher.php';
                         }else {
+                            
                             $home_url = 'user/student.php';
                         }
                         header('Location: '.$home_url);
@@ -42,11 +46,13 @@
             }
         }
     }else{//如果使用者已經登入，則直接跳轉到已經登入頁面
+        // echo'AAA';
         $home_url = 'loged.php';
         header('Location: '.$home_url);
 
     }
 ?>
+
 
 <html>
     <head>

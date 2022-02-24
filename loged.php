@@ -12,7 +12,7 @@ try {
     if(isset($_SESSION['username'])){
         echo '你好'.$_SESSION['username'];
         echo '<a href="logOut.php"> Log Out('.$_SESSION['username'].')</a>';
-        header("Location:user/");
+        header("Location:user/student.php");
     }else{
         echo '<a href="logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         }
