@@ -9,8 +9,10 @@
     require_once 'conn.php';
 //開啟一個會話
     session_start();
-    $error_msg = "";
-    echo $_SESSION['user_id'];
+    // $error_msg = "";
+    // $_SESSION['user_id']='ghj';
+    // echo $_SESSION['user_id'];
+    // unset($_SESSION['user_id']);
 //如果使用者未登入，即未設定$_SESSION['user_id']時，執行以下程式碼
     if(!empty($_SESSION['user_id'])){
         if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼            
@@ -46,7 +48,7 @@
             }
         }
     }else{//如果使用者已經登入，則直接跳轉到已經登入頁面
-        // echo'AAA';
+        // echo'aa';
         $home_url = 'loged.php';
         header('Location: '.$home_url);
 

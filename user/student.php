@@ -62,36 +62,38 @@ table{
         <?=$logout;?>
     </div>
     </div>
-    <!-- ------------------------------------ -->
+    <!-- ------------------------------------選學年 -->
     <div style="width: 100%;display: inline-block;text-align: center;">
         <div class="user-index">選擇學年
         <select name="year" onchange="submit();">
             <?php
-                 $tmp;
+                //  $tmp;
                  echo  '<option selected=selected >'. $_POST['year'].'</option>';
                 foreach ($result as $row){
-                    $tmp = $row["year"];
+                    // $tmp = $row["year"];
                     if ($classname!=$row["year"]){
                         echo '<option name="meal" value="',$row["year"],'"> ',$row["year"],'</option>';
-                    }$year = $tmp;
+                    };
+                        // }$year = $tmp;
                     
                 }
             ?>
             </select>
         </div>
-        <!-- ---------------------------------- -->
+        <!-- ---------------------------------- 選要查的-->
         <div style="width: 100%;display: inline-block;text-align: center;">
         <div class="user-index">選擇要查詢的課程
         <select name="class_name" onchange="submit();">
             <?php
-                 $tmp;
+                //  $tmp;
                  echo  '<option selected=selected >'. $_POST['class_name'].'</option>';
                  
                     foreach ($result as $row){
-                        $tmp = $row["class_name"];
-                        if($row['year']==$year){
+                        // $tmp = $row["class_name"];
+                        if($row['year']==$_POST['year']){
                                 echo '<option name="meal" value="',$row["class_name"],'"> ',$row["class_name"],'</option>';
-                            $classname = $tmp;}
+                            // $classname = $tmp
+                            ;}
                         
                     }
             ?>
@@ -125,8 +127,7 @@ table{
 
 <div id='search'>
     <?php
-    $row['class_name']='資料庫程式設計';
-    $search= $conn ->query("SELECT * FROM `".'點名_'.$row['class_name']."` where name='".$_SESSION['username']."'");
+    $search= $conn ->query("SELECT * FROM `".'點名_'.$_POST['class_name']."` where name='".$_SESSION['username']."'");
         $resultsearch = $search ->fetchAll();
 
     $table = "<table border=1 id='search'><tr><td>學生ID</td><td>學生姓名</td><td>出席</td><td>心情</td><td>時間</td></tr>"; 
