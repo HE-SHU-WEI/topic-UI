@@ -60,6 +60,16 @@ span{
 
 
 /* ----------------------------- CAM*/
+.box {
+    border: 1px solid red;
+    width: 300px;
+  }
+  .a, .b {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    border: 1px solid red;
+    float: left;}
 #container {
 	margin: 0px auto;
 	width: 500px;
