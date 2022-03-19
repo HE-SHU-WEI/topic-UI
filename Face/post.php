@@ -23,8 +23,8 @@ if(!empty($name)&&!empty($account)&&!empty($password))
     require_once 'conn.php';*/
 
     try {
-        $conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_29982127_php_class", "epiz_29982127", "gV74c808kqGUPsj"
-        ,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
+    //     $conn = new PDO("mysql:host=sql108.epizy.com;dbname=epiz_29982127_php_class", "epiz_29982127", "gV74c808kqGUPsj"
+    //     ,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
         $stmt = $conn ->prepare("SELECT * FROM `user` WHERE realN = '$name' AND account ='$account'  AND passW ='$password' ; ");
         $stmt->execute( [  $_POST['acc'] ] );
         $result = $stmt->fetchAll();

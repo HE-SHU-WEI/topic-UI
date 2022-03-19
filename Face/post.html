@@ -4,40 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/post.css" />
+    <link rel="stylesheet" href="post.css"/>
     <title>註冊臉部訊息</title>      
-    <style>
-    .clearfix {
-  *zoom: 1;
-}
-.clearfix:after {
-  content: "";
-  display: table;
-  line-height: 0;
-  clear: both;
-}
-.box {
-  border: 1px solid red;
-  width: 300px;
-}
-.a, .b {
-  display: inline-block;
-  width: 100px;
-  height: 50px;
-  border: 1px solid red;
-  float: left;
-}
-.a {
-  height: 100px;
-}
-    </style>
 
 
 
 </head>
 <body>
     <a href="home.html" >
-        <img src="picture/logo.png" class="logo" style="margin-left: 45%;" />
+        <img src="..\picture\logo.png" class="logo" style="margin-left: 45%;" />
     </a>
     <div style="width: 100%;display: inline-block;text-align: center;">
         <div class="mobile-box">
@@ -48,7 +23,7 @@
                 <!--資料庫  account的大小設為20-->
                 <label >帳號 </label><span>User ID</span><br>
                 <span style="font-weight: bold;color: #52aef4;">
-                    <i><img src="picture/information.png" class="information_icon"></i> 
+                    <i><img src="..\picture\information.png" class="information_icon"></i> 
                         開頭請輸入大寫</span><br>
                 <input class="input_style" type="text" placeholder="請輸入學號/職工編號" onkeyup="value=value.replace(/[^\w@.]|_/ig,'')"  minlength="1" maxlength="20" name="acc"><!--acc帳號--><br>
                 <!--資料庫  password的大小設為10-->
@@ -56,79 +31,12 @@
                 <input class="input_style" type="password" minlength="1" maxlength="10"name="PW" ><!--PW密碼--></a><br>
                 <input type="submit" value="提交">
 
-                <!-- 將影像放在框框裡面 -->
+                
                 
             </form>
         </div>
     </div>
 
-    <!-- ------------------------------------------ CAM-->
-    <div class="box clearfix">
-        <div id="my_camera" class="a"></div>
-        <div id="my_result" class="b"></div>
-        
-    </div>
-
-
-<a href="javascript:void(take_snapshot())">點選拍照</a></br></br>
-
-<!-- 新增圖片驗證碼功能 -->
-<img src="captcha.php"></br>
-
-<input type="text" id="captcha" name="captcha" placeholder="請輸入驗證碼"></br>
-<input type="text" id="pre" name="pre" placeholder="請輸入儲存後的圖片的字首"></br>
-
-<a href="javascript:void(upload())">點選上傳照片</a></br>
-
-<!-- 引入 webcam.js 檔案 -->
-<script src="JS/webcam.js"></script>
-
-<script language="JavaScript">
-
-//設定鏡頭的大小
-Webcam.set({
-     width: 320,
-     height: 240,
-     image_format: 'jpeg',
-     jpeg_quality: 90
-}); 
-
-Webcam.attach( '#my_camera' );
-
-// 拍照
-function take_snapshot() {
-    Webcam.snap( function(data_uri) {
-        // 點選拍照後，將照片放回頁面
-        document.getElementById('my_result').innerHTML = '<img id="img_uri" src="'+data_uri+'"/>';
-    });
-}
-
-// 上傳
-function upload() {
-    var img_uri = document.getElementById('img_uri').src;    // 圖片資訊
-    var captcha = document.getElementById('captcha').value;  // 驗證碼
-    var pre     = document.getElementById('pre').value;      // 圖片字首
-
-    if (img_uri.length == 0) {
-        alert("拍照失敗");
-        return false;
-    }
-    if (captcha.length == 0) {
-        alert("請輸入驗證碼");
-        return false;
-    }
-    if (pre.length == 0) {
-        alert("請輸入儲存後的圖片的字首");
-        return false;
-    }
-
-    // 將引數一起傳給PHP
-    Webcam.upload(img_uri, 'action.php?captcha='+captcha+"&pre="+pre, function(code, text) {
-        alert(text);
-        location.reload();
-    });    
-}
-</script>
     
 </body>
 </html>
