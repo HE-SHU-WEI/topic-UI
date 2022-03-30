@@ -1,7 +1,7 @@
 <?php
 session_start(); //必須處於程式頂部
 // 儲存的圖片檔名
-$picture_name = 'C:/Users/User/Desktop/abc/' . 'picture'  . "_" . time() . '.jpg';
+$picture_name = 'C:/Users/User/Desktop/text/data/data_faces_from_camera/person_1_liu/' . 'picture'  . "_" . time() . '.jpg';
 // 儲存圖片
 $result       = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
 // move_uploaded_file(要移動的文件,文件新位置)
@@ -14,6 +14,9 @@ if (!$result) {
     echo "儲存圖片失敗";
     exit();
 }
+
+
+//C:\Users\User\Desktop\text\data\data_faces_from_camera\person_1_liu\
 
 // $url_raw = 'C:\Users\User\Pictures\Saved Pictures' ;
 // $url = str_replace('\\', '/', $url_raw);
