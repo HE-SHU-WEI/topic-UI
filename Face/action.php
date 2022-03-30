@@ -1,7 +1,10 @@
 <?php
 session_start(); //必須處於程式頂部
+// $_SESSION['username'] = '何書瑋';
+echo $_SESSION['username'];
 // 儲存的圖片檔名
-$picture_name = 'C:/Users/User/Desktop/text/data/data_faces_from_camera/person_1_liu/' . 'picture'  . "_" . time() . '.jpg';
+$path = $_SESSION['username'] ;
+$picture_name = 'C:/xampp/htdocs/topic/Face/'. $path . "_" . time() . '.jpg';
 // 儲存圖片
 $result       = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
 // move_uploaded_file(要移動的文件,文件新位置)

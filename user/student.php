@@ -1,9 +1,5 @@
 <?php
-//
-//  名稱：學生頁面
-//  狀態：部份功能
-//
-//
+
 require_once('C:\xampp\htdocs\topic\conn.php');
 
 session_start();

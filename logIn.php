@@ -1,18 +1,8 @@
 <?php
-//
-//  名稱：登入頁面
-//  狀態：完成
-//
-//
 //插入連線資料庫的相關資訊
-
     require_once 'conn.php';
 //開啟一個會話
     session_start();
-    // $error_msg = "";
-    // $_SESSION['user_id']='ghj';
-    // echo $_SESSION['user_id'];
-    // unset($_SESSION['user_id']);
 //如果使用者未登入，即未設定$_SESSION['user_id']時，執行以下程式碼
     if(!empty($_SESSION['user_id'])){
         if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼            
