@@ -24,4 +24,4 @@ if (!$result) {
 // $url_raw = 'C:\Users\User\Pictures\Saved Pictures' ;
 // $url = str_replace('\\', '/', $url_raw);
 // echo "上傳成功 \n" . "圖片路徑:" . $url;
-echo "上傳成功 \n" . "圖片路徑:";
+echo "上傳成功 \n" . "圖片路徑: " . $path;
