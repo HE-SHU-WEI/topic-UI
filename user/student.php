@@ -3,13 +3,13 @@
 require_once('C:\xampp\htdocs\topic\conn.php');
 
 session_start();
-
+$_SESSION['username']='劉瑋隆';
 try {
     if(isset($_SESSION['username'])){
         $n = $_SESSION['username'];
         $y = $_POST['year'];
         $txt =  '你好，'.$_SESSION['username']. '同學<br>';
-        $logout =  '<a href="/test/logOut.php"> Log Out('.$_SESSION['username'].')</a>';
+        $logout =  '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
         $translate = $conn ->prepare("SELECT * , CASE season
                  WHEN 0 THEN '上學期'  
@@ -21,7 +21,7 @@ try {
             $result = $translate ->fetchAll();
 
     }else{
-        echo '<a href="/test/logOut.php"> Log Out('.$_SESSION['username'].')</a>';
+        echo '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         }
     }catch(Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";

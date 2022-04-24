@@ -1,8 +1,9 @@
 <?php
 //插入連線資料庫的相關資訊
     require_once 'conn.php';
-//開啟一個會話
-    session_start();
+//開啟session
+session_start(); 
+unset($_SESSION['username']);   //將「指定」的session清除
 //如果使用者未登入，即未設定$_SESSION['user_id']時，執行以下程式碼
     if(!empty($_SESSION['user_id'])){
         if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼            
@@ -37,12 +38,12 @@
                 $error_msg = 'Sorry, you must enter a valid username and password to log in.'."<br>";
             }
         }
-    }else{//如果使用者已經登入，則直接跳轉到已經登入頁面
-        // echo'aa';
-        $home_url = 'loged.php';
-        header('Location: '.$home_url);
-
     }
+    // else{//如果使用者已經登入，則直接跳轉到已經登入頁面
+    //     $home_url = 'loged.php';
+    //     header('Location: '.$home_url);
+
+    // }
 ?>
 
 
@@ -77,7 +78,7 @@
             <label>密碼</label><span>Password</span><br>
             <input  class="input_style" type="password"maxlength="10" id="password" name="password"/><br>
             <!--如果使用者未登入，則顯示登入表單，讓使用者輸入id和密碼-->
-            <?=$error_msg;?>
+            <?php $error_msg;?>
             <input type="submit" value="Log In" name="submit"/>
             </div>
             </div>
