@@ -1,10 +1,10 @@
 <?php
 session_start(); //必須處於程式頂部
-// $_SESSION['username'] = '何書瑋';
-echo $_SESSION['username'];
 // 儲存的圖片檔名
 $path = $_SESSION['username'] ;
-$picture_name = 'C:/xampp/htdocs/topic/Face/'. $path . "_" . time() . '.jpg';
+$now = date('YmdHis');
+$picture_name = 'C:/Users/User/Desktop/face/'. $path . "_" . $now . '.jpg';
+
 // 儲存圖片
 $result       = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
 // move_uploaded_file(要移動的文件,文件新位置)
@@ -17,11 +17,19 @@ if (!$result) {
     echo "儲存圖片失敗";
     exit();
 }
+echo "上傳成功 \n" . "圖片路徑: " . $picture_name;
 
 
-//C:\Users\User\Desktop\text\data\data_faces_from_camera\person_1_liu\
-
-// $url_raw = 'C:\Users\User\Pictures\Saved Pictures' ;
-// $url = str_replace('\\', '/', $url_raw);
-// echo "上傳成功 \n" . "圖片路徑:" . $url;
-echo "上傳成功 \n" . "圖片路徑: " . $path;
+ 
+//打开一个文件，给文件追加内容
+ 
+//追加(append)方式打开path.txt文件，"a"表示文件不在会自动创建
+$fp = fopen('C:/Users/User/Desktop/path.txt','a');  
+ 
+//给文件写入内容
+fwrite($fp,$picture_name."\n");
+ 
+//关闭文件
+fclose($fp);
+ 
+?>

@@ -18,5 +18,7 @@
             <input type="button" value="登入"  onclick="location.href='logIn.php'" style="width: 150px;height: fit-content; font-size:20px">
         </div>
     </center>
+    <?php session_start();
+    unset($_SESSION['username']) ;?>
 </body>
 </html>

@@ -3,7 +3,7 @@
 require_once('C:\xampp\htdocs\topic\conn.php');
 
 session_start();
-$_SESSION['username']='劉瑋隆';
+$_SESSION['username']="劉瑋隆";
 try {
     if(isset($_SESSION['username'])){
         $n = $_SESSION['username'];
@@ -51,9 +51,9 @@ table{
 <form action="" method="POST">
     <!-- <?=$str;?> -->
     <div>
-    <a href ="/test/user_interface/user_interface.html" style="height = 0%">
+    <a href ="/test/user_interface/user_interface.html" style="height:0%;">
             <img src = '/test/picture/new.png', class="person_icon" ></a>
-    <div style = "margin-bottom:5%;width 10% ;float:left;">
+    <div style = "margin-bottom:5%;width:10%;float:left;">
         <?=$txt;?>
         <?=$logout;?>
     </div>

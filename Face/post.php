@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 require_once('C:\xampp\htdocs\topic\conn.php');
     $name     = '';
     $password = '';
@@ -25,6 +26,7 @@ if(!empty($name)&&!empty($account)&&!empty($password))
         else{
             $_SESSION['welocme']  =  "歡迎加入，請點選登入";
             $_SESSION['username'] =  $_POST['realN'] ;
+            echo $_SESSION['username'];
             $url = 'face.html';
             sleep(3);
             header('Location: '.$url);
