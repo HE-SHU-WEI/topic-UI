@@ -6,9 +6,10 @@ $now = date('YmdHis');
 $picture_name = 'C:/Users/User/Desktop/face/'. $path . "_" . $now . '.jpg';
 
 // 儲存圖片
-$result       = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
+$result   = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
 // move_uploaded_file(要移動的文件,文件新位置)
-// $_FILES['webcam'] = C:\xampp\tmp
+//$_FILES['webcam']是在webcam.js定義的檔案名稱
+//$_FILES["file"]["tmp_name"]：上傳檔案後的暫存資料夾位置。
 // 新位置要用一個$包起來
 
 echo $_FILES['webcam']['tmp_name'];

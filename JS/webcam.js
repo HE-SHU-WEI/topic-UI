@@ -55,7 +55,9 @@
             force_flash: false,    // force flash mode,
             flip_horiz: false,     // flip image horiz (mirror mode)
             fps: 30,               // camera frames per second
+            //-------------------------------------------------------------------------------------------
             upload_name: 'webcam', // name of file in upload post data
+            //---------------------------------------------------------------------------------------------
             constraints: null,     // custom user media constraints,
             swfURL: '',            // URI to webcam.swf movie (defaults to the js location)
             flashNotDetectedText: 'ERROR: No Adobe Flash Player detected.  Webcam.js relies on Flash for browsers that do not support getUserMedia (like yours).',
