@@ -10,12 +10,15 @@ require_once('C:\xampp\htdocs\topic\conn.php');
     $name     = $_POST['realN'];
     $password = $_POST['PW'];
     $account  = $_POST['acc'];
+    $class    = $_POST['major'] . $_POST['grade'] . '年級';
+    //把系班級拼起來
     }
 
-if(!empty($name)&&!empty($account)&&!empty($password))
+if(!empty($class)&&!empty($name)&&!empty($account)&&!empty($password))
 {
     try {
-        $stmt = $conn ->query("SELECT * FROM user WHERE realN = '$name' AND account ='$account' AND passW ='$password'");//從 SQL中找有沒有這個人
+        $stmt = $conn ->query("SELECT * FROM $class WHERE name = '$name' AND id ='$account' AND passW ='$password'");//從 SQL中找有沒有這個人
+        //table名稱為輸入的班級
 
         // $stmt->execute( [  $_POST['acc'] ] );
         $result = $stmt->fetchAll();
@@ -62,9 +65,24 @@ else {
         <div class="mobile-box">
             <h3>登入以註冊臉部訊息</h3>
             <form method="post" action="" >
+                <label >科系</label><span>Major</span><br>
+                <input class="input_style" type="text" minlength="1" maxlength="20" name="major"><br>
+                <label >年級</label><span>Grade</span><br>
+                <select name="grade">
+                    <option value="一">1</option>
+                    <option value="二">2</option>
+                    <option value="三">3</option>
+                    <option value="四">4</option>
+                    <option value="五">5</option>
+                    <option value="六">6</option>
+                    <option value="七">7</option>
+                </select>
+                <br>
+
                 <label >名字 </label><span>Name</span><br>
                 <input class="input_style" type="text" minlength="1" maxlength="20" name="realN"><!--真實realN命名--><br>
                 <!--資料庫  account的大小設為20-->
+
                 <label >帳號 </label><span>User ID</span><br>
                 <span style="font-weight: bold;color: #52aef4;">
                     <!-- <i><img src="../picture/information.png" class="information_icon"></i>  -->
