@@ -3,7 +3,6 @@
 require_once('C:\xampp\htdocs\topic\conn.php');
 
 session_start();
-$_SESSION['username']="劉瑋隆";
 try {
     if(isset($_SESSION['username'])){
         $n = $_SESSION['username'];
@@ -63,14 +62,14 @@ table{
         <div class="user-index">選擇學年
         <select name="year" onchange="submit();">
             <?php
-                //  $tmp;
+                
                  echo  '<option selected=selected >'. $_POST['year'].'</option>';
                 foreach ($result as $row){
-                    // $tmp = $row["year"];
+                    
                     if ($classname!=$row["year"]){
                         echo '<option name="meal" value="',$row["year"],'"> ',$row["year"],'</option>';
                     };
-                        // }$year = $tmp;
+                    
                     
                 }
             ?>

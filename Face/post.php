@@ -58,7 +58,7 @@ else {
 </head>
 <body>
     <a href="../home.html" >
-        <img src="../picture/logo.png" class="logo" style="margin-left: 45%;"  /> 
+        <img src="../picture/BigLogo.png" class="logo" style="margin-left: 45%;"  /> 
     </a>
 
     <div style="width: 100%;display: inline-block;text-align: center;">
