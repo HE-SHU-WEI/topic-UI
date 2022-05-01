@@ -6,24 +6,27 @@ session_start();
 unset($_SESSION['username']);   //將「指定」的session清除
 //如果使用者未登入，即未設定$_SESSION['user_id']時，執行以下程式碼
     if(!empty($_SESSION['user_id'])){
-        if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼            
-            // $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
-            // mysqli_query($dbc,"SET NAMES utf8");
-            $user_username = mysqli_real_escape_string($conn,trim($_POST['userID']));
-            $user_password = mysqli_real_escape_string($conn,trim($_POST['password']));
-            
+        if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼
+
+            // $user_username = mysqli_real_escape_string($conn,trim($_POST['userID']));
+            // $user_password = mysqli_real_escape_string($conn,trim($_POST['password']));
+            //trim將字串前後空白刪掉
+            $user_username = $_POST['userID'];
+            $user_password = $_POST['password'];
 
             if(!empty($user_username)&&!empty($user_password)){
                 $query = "SELECT * FROM user WHERE account = '$user_username' AND "."passW = '$user_password'";
                
                 //用使用者名稱和密碼進行查詢
-                $data = mysqli_query($conn,$query);
+                $data = PDO::query($conn,$query);
                     //若查到的記錄正好為一條，則設定SESSION，同時進行頁面重定向
-                    if(mysqli_num_rows($data)==1){
-                        $row = mysqli_fetch_array($data);
+                    // if(mysqli_num_rows($data)==1){
+                    if(PDOStatement::rowCount($data)==1){
+                        // $row = fetchAll($data);
+                        $row = $data -> fetch(PDO::FETCH_ASSOC);
                         $_SESSION['username'] = $row['realN'];
                         $_SESSION['user_id'] = $row['id'];
-                        if($row['account'][0] != 'A'){
+                        if($row['account'][0] != 'A'){//老師帳號開頭非A
                             
                             $home_url = 'user/teacher.php';
                         }else {
@@ -63,7 +66,7 @@ unset($_SESSION['username']);   //將「指定」的session清除
             <div style="width: 100%;display: inline-block;text-align: center;">
                 <div class="mobile-box">
              <a href = 'home.html'>
-                <img src = 'picture/logo2.png' class="m">
+                <img src = 'picture/BigLogo.png' class="m">
             </a>
             <h3>點名系統</h3>
             

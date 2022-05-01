@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require_once('C:\xampp\htdocs\topic\conn.php');
+require_once('..\conn.php');
     $name     = '';
     $password = '';
     $account  = '';
@@ -53,7 +53,7 @@ else {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="../css/post.css" />
     <title>註冊臉部訊息</title>
 </head>
 <body>

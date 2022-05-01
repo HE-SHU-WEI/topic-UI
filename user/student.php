@@ -1,6 +1,6 @@
 <?php
 
-require_once('C:\xampp\htdocs\topic\conn.php');
+require_once('..\conn.php');
 
 session_start();
 try {
