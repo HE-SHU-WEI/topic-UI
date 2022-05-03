@@ -18,7 +18,8 @@ unset($_SESSION['username']);   //將「指定」的session清除
                 $query = "SELECT * FROM user WHERE account = '$user_username' AND "."passW = '$user_password'";
                
                 //用使用者名稱和密碼進行查詢
-                $data = PDO::query($conn,$query);
+                // $data = PDO::query($conn,$query);
+                $data = PDO::query();
                     //若查到的記錄正好為一條，則設定SESSION，同時進行頁面重定向
                     // if(mysqli_num_rows($data)==1){
                     if(PDOStatement::rowCount($data)==1){

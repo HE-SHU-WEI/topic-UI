@@ -1,12 +1,22 @@
 <?php
 session_start(); //必須處於程式頂部
 // 儲存的圖片檔名
-$path = $_SESSION['username'] ;
+$path = 'C:/Users/User/Desktop/face/';
+$name = $_SESSION['username'] ;
 $now = date('YmdHis');
-$picture_name = 'C:/Users/User/Desktop/face/'. $path . "_" . $now . '.jpg';
+// $picture_name = $path . $name . "_" . $now . '.jpg';
+
+if (!file_exists($path . $name)) //檢查Username資料夾是否存在於指定path
+{
+    $picture_name = $path . $name . "/" . $now . '.jpg';
+    mkdir($path . $name, 0777, true);
+    // 儲存圖片
+    $result   = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
+
+}
 
 // 儲存圖片
-$result   = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
+// $result   = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
 // move_uploaded_file(要移動的文件,文件新位置)
 //$_FILES['webcam']是在webcam.js定義的檔案名稱
 //$_FILES["file"]["tmp_name"]：上傳檔案後的暫存資料夾位置。

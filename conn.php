@@ -27,4 +27,7 @@ $conn = new PDO("mysql:host=$server_name;dbname=$db_name", $username, $password
 
 //連線完要加上下面這兩行，編碼跟時區比較不會有問題
 $conn->query('SET time_zone = "+8:00"'); // 設定台灣時間
+
+$conni = new PDO("mysql:host=$server_name;dbname=$db_name", $username, $password
+        ,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
 ?>
