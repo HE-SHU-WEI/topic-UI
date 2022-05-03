@@ -8,23 +8,18 @@ unset($_SESSION['username']);   //將「指定」的session清除
     if(!empty($_SESSION['user_id'])){
         if(empty($_POST['submit'])){//使用者提交登入表單時執行如下程式碼
 
-            // $user_username = mysqli_real_escape_string($conn,trim($_POST['userID']));
-            // $user_password = mysqli_real_escape_string($conn,trim($_POST['password']));
+            $user_username = mysqli_real_escape_string($conni,trim($_POST['userID']));
+            $user_password = mysqli_real_escape_string($conni,trim($_POST['password']));
             //trim將字串前後空白刪掉
-            $user_username = $_POST['userID'];
-            $user_password = $_POST['password'];
 
             if(!empty($user_username)&&!empty($user_password)){
                 $query = "SELECT * FROM user WHERE account = '$user_username' AND "."passW = '$user_password'";
                
                 //用使用者名稱和密碼進行查詢
-                // $data = PDO::query($conn,$query);
-                $data = PDO::query();
+                $data = mysqli_query($conni,$query);
                     //若查到的記錄正好為一條，則設定SESSION，同時進行頁面重定向
-                    // if(mysqli_num_rows($data)==1){
-                    if(PDOStatement::rowCount($data)==1){
-                        // $row = fetchAll($data);
-                        $row = $data -> fetch(PDO::FETCH_ASSOC);
+                    if(mysqli_num_rows($data)==1){
+                        $row = mysqli_fetch_array($data);
                         $_SESSION['username'] = $row['realN'];
                         $_SESSION['user_id'] = $row['id'];
                         if($row['account'][0] != 'A'){//老師帳號開頭非A
