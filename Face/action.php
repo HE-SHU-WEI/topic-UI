@@ -12,7 +12,11 @@ if (!file_exists($path . $name)) //檢查Username資料夾是否存在於指定p
     mkdir($path . $name, 0777, true);
     // 儲存圖片
     $result   = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
-
+}
+else
+{
+    $picture_name = $path . $name . "/" . $now . '.jpg';
+    $result   = move_uploaded_file($_FILES['webcam']['tmp_name'], $picture_name);
 }
 
 // 儲存圖片
@@ -22,7 +26,6 @@ if (!file_exists($path . $name)) //檢查Username資料夾是否存在於指定p
 //$_FILES["file"]["tmp_name"]：上傳檔案後的暫存資料夾位置。
 // 新位置要用一個$包起來
 
-echo $_FILES['webcam']['tmp_name'];
 
 if (!$result) {
     echo "儲存圖片失敗";
