@@ -1,6 +1,6 @@
 <?php
 
-require_once('..\conn.php');
+require_once('..\set.php');
 
 session_start();
 try {

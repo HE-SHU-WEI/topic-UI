@@ -15,4 +15,8 @@ $conn->query('SET time_zone = "+8:00"'); // 設定台灣時間
 $conni = new mysqli($server_name, $username, $password, $db_name);
 //設定連線的字元集為 UTF8 編碼
 mysqli_set_charset($conni, "utf8");
+
+
+
+$path = 'C:/Users/User/Desktop/face/';//註冊照片儲存地點
 ?>

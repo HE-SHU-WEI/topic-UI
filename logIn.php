@@ -1,6 +1,6 @@
 <?php
 //插入連線資料庫的相關資訊
-    require_once 'conn.php';
+    require_once 'set.php';
 //開啟session
 session_start(); 
 unset($_SESSION['username']);   //將「指定」的session清除
