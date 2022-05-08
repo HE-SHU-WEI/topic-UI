@@ -1,7 +1,6 @@
 <?php
 
 require_once('..\set.php');
-
 session_start();
 try {
     if(isset($_SESSION['username'])){

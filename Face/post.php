@@ -11,6 +11,7 @@ require_once('..\set.php');
     $password = $_POST['PW'];
     $account  = $_POST['acc'];
     $class    = $_POST['major'] . $_POST['grade'] . '年級';
+    $_SESSION['class'] = $class;
     //把系班級拼起來
     }
 
@@ -85,10 +86,10 @@ else {
 
                 <label >帳號 </label><span>User ID</span><br>
                 <span style="font-weight: bold;color: #52aef4;">
-                    <!-- <i><img src="../picture/information.png" class="information_icon"></i>  -->
                         開頭請輸入大寫</span><br>
                 <input class="input_style" type="text" placeholder="請輸入學號/職工編號"  onkeyup="value=value.replace(/[^\w@.]|_/ig,'')"  minlength="1" maxlength="20" name="acc"><!--acc帳號--><br>
                 <!--資料庫  password的大小設為10-->
+                
                 <label >密碼 </label><span>Password</span><br>
                 <input class="input_style" type="password" minlength="1" maxlength="10"name="PW" ><!--PW密碼--><br>
                 <?php echo $txt;?>
