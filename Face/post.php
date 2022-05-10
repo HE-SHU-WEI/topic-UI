@@ -10,10 +10,9 @@ require_once('..\set.php');
     $name     = $_POST['realN'];
     $password = $_POST['PW'];
     $account  = $_POST['acc'];
-    $class    = $_POST['major'] . $_POST['grade'] . '年級';
-    $_SESSION['class'] = $class;
-    //把系班級拼起來
+    $class    = $_POST['major'] . $_POST['grade'] . '年級';//把系班級拼起來
     }
+    
 
 if(!empty($class)&&!empty($name)&&!empty($account)&&!empty($password))
 {
@@ -32,8 +31,8 @@ if(!empty($class)&&!empty($name)&&!empty($account)&&!empty($password))
             $_SESSION['username'] =  $_POST['realN'] ;
             echo $_SESSION['username'];
             $url = 'face.html';
-            sleep(3);
             header('Location: '.$url);
+            
         }
     } catch(PDOException $e ) {
         $txt =  "資料庫連結失敗! 錯誤訊息為 " . $e->getMessage();  
@@ -89,7 +88,7 @@ else {
                         開頭請輸入大寫</span><br>
                 <input class="input_style" type="text" placeholder="請輸入學號/職工編號"  onkeyup="value=value.replace(/[^\w@.]|_/ig,'')"  minlength="1" maxlength="20" name="acc"><!--acc帳號--><br>
                 <!--資料庫  password的大小設為10-->
-                
+
                 <label >密碼 </label><span>Password</span><br>
                 <input class="input_style" type="password" minlength="1" maxlength="10"name="PW" ><!--PW密碼--><br>
                 <?php echo $txt;?>

@@ -1,9 +1,14 @@
 <?php
 session_start(); 
 require_once('..\set.php');
-$_SESSION['class'] = $class;
-$_SESSION['username'] = $name;
+$id = $_SESSION['id'];
+$class = $_SESSION['class'];
+$csv = $_POST['csv'];
 
-$csv = $conn -> query("UPDATE $class SET `name`= $name,`id`='[value-2]',`major`='[value-3]',`grade`='[value-4]',`CSV`='[value-5]',`account`='[value-6]',`passW`='[value-7]' WHERE 1");
+$conn -> query("UPDATE $class SET `CSV`= $csv WHERE `id`= $id");
+
+//-------
+echo $_SESSION['id'] ;
+echo  $_SESSION['class'] ;
 
 ?>

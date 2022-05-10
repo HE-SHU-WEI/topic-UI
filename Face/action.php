@@ -33,15 +33,15 @@ echo "上傳成功 \n" . "圖片路徑: " . $picture_name;
 
 
  
-//打开一个文件，给文件追加内容
+//紀錄圖片路徑txt
  
-//追加(append)方式打开path.txt文件，"a"表示文件不在会自动创建
+//追加(append)方式打開path.txt文件，"a"表示文件不在會自動創建
 $fp = fopen('C:/Users/User/Desktop/path.txt','a');  
  
-//给文件写入内容
+//寫入
 fwrite($fp,$picture_name."\n");
  
-//关闭文件
+//關閉
 fclose($fp);
  
 ?>
