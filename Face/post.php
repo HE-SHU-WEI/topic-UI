@@ -32,7 +32,8 @@ if(!empty($class)&&!empty($name)&&!empty($account)&&!empty($password))
             echo $_SESSION['username'];
             $url = 'face.html';
             header('Location: '.$url);
-            
+            $_SESSION['id'] = $account;
+            $_SESSION['class'] = $class;
         }
     } catch(PDOException $e ) {
         $txt =  "資料庫連結失敗! 錯誤訊息為 " . $e->getMessage();  
