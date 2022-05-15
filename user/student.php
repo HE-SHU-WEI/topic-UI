@@ -2,10 +2,16 @@
 
 require_once('..\set.php');
 session_start();
+
+
+
+
 try {
     if(isset($_SESSION['username'])){
         $n = $_SESSION['username'];
+        if(empty($_POST['year']))$_POST['year']= 110;
         $y = $_POST['year'];
+        
         $txt =  '你好，'.$_SESSION['username']. '同學<br>';
         $logout =  '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
@@ -121,7 +127,9 @@ table{
 
 <div id='search'>
     <?php
-    $search= $conn ->query("SELECT * FROM `".'點名_'.$_POST['class_name']."` where name='".$_SESSION['username']."'");
+    if(!empty($_POST['class_name']))//判斷是否有查詢classname
+    {
+        $search= $conn ->query("SELECT * FROM `".'點名_'.$_POST['class_name']."` where name='".$_SESSION['username']."'");
         $resultsearch = $search ->fetchAll();
 
     $table = "<table border=1 id='search'><tr><td>學生ID</td><td>學生姓名</td><td>出席</td><td>心情</td><td>時間</td></tr>"; 
@@ -131,6 +139,8 @@ table{
             }
             $table .= "</table>";
             echo $table;
+    }
+    
     ?>
 </div>
 
