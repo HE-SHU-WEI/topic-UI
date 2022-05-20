@@ -6,6 +6,13 @@ session_start();
 // $_SESSION['username'] = '楊瑞賓';
 
 
+# 設定時區
+date_default_timezone_set('Asia/Taipei');
+
+# 取得日期與時間（新時區）
+$now = date('Y/m/d H:i:s');
+//補點名用
+
 try {
     if(isset($_SESSION['username'])){
         $n = $_SESSION['username'];
@@ -15,12 +22,6 @@ try {
         $txt =  '你好，'.$_SESSION['username']. '老師<br>';
         $logout =  '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
-        // $translate = $conn ->prepare("SELECT * , CASE season
-        //          WHEN 0 THEN '上學期'  
-        //          else '下學期' 
-        //     END 
-        //     FROM $n
-        //     ORDER BY student_name;");
         $translate = $conn ->prepare("SELECT * FROM `$n`");
             $translate ->execute();
             $result = $translate ->fetchAll();
@@ -118,9 +119,25 @@ table{
             
         
     </table>
-    
+
+
+    <br>
+    <form method='POST' action=''>
+    <input type='text' id='id' name='id'/>
+    <button type='submit'>VIEW</button>
+    </form>
 </div>
 
+
+<?php
+$id = $_POST['id'];
+$check = $conn ->query("
+
+UPDATE `資料庫程式設計` SET `attend1`='$now' WHERE `id`='$id'
+");
+$check -> execute();
+
+?>
 
 
 
@@ -129,9 +146,18 @@ table{
 <div id='search'>
     <?php
     if(!empty($_POST['class_name']))//判斷是否有查詢classname
-    {
+    {   
+        // $button = "<br>
+        // <form method='POST' action=''>
+        // <input type='text' id='repSelect' name='repSelect'/>
+        // <button type='submit'>VIEW</button>
+        // </form>";
+        $button = "<br>
+        
+        <button type='submit'>VIEW</button>
+        ";
         $classname = $_POST['class_name'];
-        //if attend n 是null 則顯示缺席
+        //if attendN 是null 則顯示缺席
         $search= $conn ->query("SELECT * ,
         IFNULL(attend1 ,'缺席') as attend1,
         IFNULL(attend2 ,'缺席') as attend2,
@@ -155,6 +181,8 @@ table{
         
         FROM `$classname`
         ");
+
+        
 
 
         $search -> execute();
