@@ -123,8 +123,8 @@ table{
 
     <br>
     <form method='POST' action=''>
-    <input type='text' id='id' name='id'/>
-    <button type='submit'>VIEW</button>
+    <input type='text' name='id' placeholder='請輸入學號'/>
+    <button type='submit'>補點</button>
     </form>
 </div>
 
@@ -132,7 +132,6 @@ table{
 <?php
 $id = $_POST['id'];
 $check = $conn ->query("
-
 UPDATE `資料庫程式設計` SET `attend1`='$now' WHERE `id`='$id'
 ");
 $check -> execute();
@@ -147,11 +146,6 @@ $check -> execute();
     <?php
     if(!empty($_POST['class_name']))//判斷是否有查詢classname
     {   
-        // $button = "<br>
-        // <form method='POST' action=''>
-        // <input type='text' id='repSelect' name='repSelect'/>
-        // <button type='submit'>VIEW</button>
-        // </form>";
         $button = "<br>
         
         <button type='submit'>VIEW</button>
@@ -168,17 +162,16 @@ $check -> execute();
         IFNULL(attend7 ,'缺席') as attend7,
         IFNULL(attend8 ,'缺席') as attend8,
         IFNULL(attend9 ,'缺席') as attend9,
-        IFNULL(attend10 ,'缺席') as attend10,
-        IFNULL(attend11 ,'缺席') as attend11,
-        IFNULL(attend12 ,'缺席') as attend12,
-        IFNULL(attend13 ,'缺席') as attend13,
-        IFNULL(attend14 ,'缺席') as attend14,
-        IFNULL(attend15 ,'缺席') as attend15,
-        IFNULL(attend16 ,'缺席') as attend16,
-        IFNULL(attend17 ,'缺席') as attend17,
-        IFNULL(attend18 ,'缺席') as attend18
+        IFNULL(attend10,'缺席') as attend10,
+        IFNULL(attend11,'缺席') as attend11,
+        IFNULL(attend12,'缺席') as attend12,
+        IFNULL(attend13,'缺席') as attend13,
+        IFNULL(attend14,'缺席') as attend14,
+        IFNULL(attend15,'缺席') as attend15,
+        IFNULL(attend16,'缺席') as attend16,
+        IFNULL(attend17,'缺席') as attend17,
+        IFNULL(attend18,'缺席') as attend18
 
-        
         FROM `$classname`
         ");
 
@@ -190,19 +183,19 @@ $check -> execute();
 
     $table = "<table border=1 id='search'>
                 <tr>
-                <td>name</td>
-                <td>id</td>
-                <td>major</td>
-                <td>grade</td>
-                <td>attend1</td>
-                <td>attend2</td>
-                <td>attend3</td>
-                <td>attend4</td>
-                <td>attend5</td>
-                <td>attend6</td>
-                <td>attend7</td>
-                <td>attend8</td>
-                <td>attend9</td>
+                <td>name    </td>
+                <td>id      </td>
+                <td>major   </td>
+                <td>grade   </td>
+                <td>attend1 </td>
+                <td>attend2 </td>
+                <td>attend3 </td>
+                <td>attend4 </td>
+                <td>attend5 </td>
+                <td>attend6 </td>
+                <td>attend7 </td>
+                <td>attend8 </td>
+                <td>attend9 </td>
                 <td>attend10</td>
                 <td>attend11</td>
                 <td>attend12</td>
