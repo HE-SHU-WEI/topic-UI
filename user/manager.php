@@ -3,24 +3,26 @@
 require_once('..\set.php');
 session_start();
 
+// $_SESSION['username'] = '楊瑞賓';
 
+
+# 設定時區
+date_default_timezone_set('Asia/Taipei');
+
+# 取得日期與時間（新時區）
+$now = date('Y/m/d H:i:s');
+//補點名用
 
 try {
     if(isset($_SESSION['username'])){
         $n = $_SESSION['username'];
-        $id = $_SESSION['user_id'];
         if(empty($_POST['year']))$_POST['year']= 110;
         $y = $_POST['year'];
         
-        $txt =  '你好，'.$_SESSION['username']. '同學<br>';
+        $txt =  '你好，'.$_SESSION['username']. '管理員<br>';
         $logout =  '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
-        $translate = $conn ->prepare("SELECT * , CASE season
-                 WHEN 0 THEN '上學期'  
-                 else '下學期' 
-            END 
-            FROM $n
-            ORDER BY student_name;");
+        $translate = $conn ->prepare("SELECT * FROM `$n`");
             $translate ->execute();
             $result = $translate ->fetchAll();
 
@@ -39,7 +41,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/test/css/main.css" />
-    <title>學生系統</title>
+    <title>管理員系統</title>
 </head>
 <body >
 <style>
@@ -110,16 +112,33 @@ table{
                     // 讓表格用foreach輸出內容
                     echo  '<tr>'.'<td>'.$row['year'].'</td>'
                                 .'<td><a href = "#search?order='.$row['class_name'].'">'.$row['class_name'].'</a></td>'
-                                .'<td>'.$row['season'].'</td>'.'</tr>';}}
+                                .'</tr>';}}
                                 
                                 ?>
                                 
             
         
     </table>
-    
+
+
+    <br>
+    <form method='POST' action=''>
+    <input type='text' name='id' placeholder='請輸入學號'/>
+    <input type='text' name='week' placeholder='請輸入週數'/>
+    <button type='submit'>補點</button>
+    </form>
 </div>
 
+
+<?php
+$id = $_POST['id'];
+$week = $_POST['week'];
+$check = $conn ->query("
+UPDATE `資料庫程式設計` SET `attend$week` ='$now' WHERE `id`='$id'
+");
+$check -> execute();
+
+?>
 
 
 
@@ -128,7 +147,8 @@ table{
 <div id='search'>
     <?php
     if(!empty($_POST['class_name']))//判斷是否有查詢classname
-    {
+    {   
+        
         $classname = $_POST['class_name'];
         //if attendN 是null 則顯示缺席
         $search= $conn ->query("SELECT * ,
@@ -152,64 +172,70 @@ table{
         IFNULL(attend18,'缺席') as attend18
 
         FROM `$classname`
-        WHERE `id` = '$id'
         ");
+
+        
+
+
+        $search -> execute();
         $resultsearch = $search ->fetchAll();
 
-        $table = "<table border=1 id='search'>
-        <tr>
-        <td>name    </td>
-        <td>id      </td>
-        <td>major   </td>
-        <td>grade   </td>
-        <td>attend1 </td>
-        <td>attend2 </td>
-        <td>attend3 </td>
-        <td>attend4 </td>
-        <td>attend5 </td>
-        <td>attend6 </td>
-        <td>attend7 </td>
-        <td>attend8 </td>
-        <td>attend9 </td>
-        <td>attend10</td>
-        <td>attend11</td>
-        <td>attend12</td>
-        <td>attend13</td>
-        <td>attend14</td>
-        <td>attend15</td>
-        <td>attend16</td>
-        <td>attend17</td>
-        <td>attend18</td>
-        </tr>";  
-        foreach($resultsearch as $v)
-        {
-            $table .= "<tr>
-            <td>".$v['name']."</td>
-            <td>".$v['id']."</td>
-            <td>".$v['major']."</td>
-            <td>".$v['grade']."</td>
-            <td>".$v['attend1']."</td>
-            <td>".$v['attend2']."</td>
-            <td>".$v['attend3']."</td>
-            <td>".$v['attend4']."</td>
-            <td>".$v['attend5']."</td>
-            <td>".$v['attend6']."</td>
-            <td>".$v['attend7']."</td>
-            <td>".$v['attend8']."</td>
-            <td>".$v['attend9']."</td>
-            <td>".$v['attend10']."</td>
-            <td>".$v['attend11']."</td>
-            <td>".$v['attend12']."</td>
-            <td>".$v['attend13']."</td>
-            <td>".$v['attend14']."</td>
-            <td>".$v['attend15']."</td>
-            <td>".$v['attend16']."</td>
-            <td>".$v['attend17']."</td>
-            <td>".$v['attend18']."</td>
-            </tr>";
-        }
+    $table = "<table border=1 id='search'>
+                <tr>
+                <td>name    </td>
+                <td>id      </td>
+                <td>major   </td>
+                <td>grade   </td>
+                <td>attend1 </td>
+                <td>attend2 </td>
+                <td>attend3 </td>
+                <td>attend4 </td>
+                <td>attend5 </td>
+                <td>attend6 </td>
+                <td>attend7 </td>
+                <td>attend8 </td>
+                <td>attend9 </td>
+                <td>attend10</td>
+                <td>attend11</td>
+                <td>attend12</td>
+                <td>attend13</td>
+                <td>attend14</td>
+                <td>attend15</td>
+                <td>attend16</td>
+                <td>attend17</td>
+                <td>attend18</td>
+                </tr>"; 
+            foreach($resultsearch as $v)
+            {
+                $table .= "<tr>
+                <td>".$v['name']."</td>
+                <td>".$v['id']."</td>
+                <td>".$v['major']."</td>
+                <td>".$v['grade']."</td>
+                <td>".$v['attend1']."</td>
+                <td>".$v['attend2']."</td>
+                <td>".$v['attend3']."</td>
+                <td>".$v['attend4']."</td>
+                <td>".$v['attend5']."</td>
+                <td>".$v['attend6']."</td>
+                <td>".$v['attend7']."</td>
+                <td>".$v['attend8']."</td>
+                <td>".$v['attend9']."</td>
+                <td>".$v['attend10']."</td>
+                <td>".$v['attend11']."</td>
+                <td>".$v['attend12']."</td>
+                <td>".$v['attend13']."</td>
+                <td>".$v['attend14']."</td>
+                <td>".$v['attend15']."</td>
+                <td>".$v['attend16']."</td>
+                <td>".$v['attend17']."</td>
+                <td>".$v['attend18']."</td>
+                </tr>";
+            }
             $table .= "</table>";
             echo $table;
+
+            
     }
     
     ?>
