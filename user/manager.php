@@ -19,7 +19,7 @@ try {
         if(empty($_POST['year']))$_POST['year']= 110;
         $y = $_POST['year'];
         
-        $txt =  '你好，'.$_SESSION['username']. '管理員<br>';
+        $txt =  '你好，'.$_SESSION['username']. '老師<br>';
         $logout =  '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
         $translate = $conn ->prepare("SELECT * FROM `$n`");
@@ -123,20 +123,49 @@ table{
 
     <br>
     <form method='POST' action=''>
-    <input type='text' name='id' placeholder='請輸入學號'/>
-    <input type='text' name='week' placeholder='請輸入週數'/>
+    <input type='text' name='check_id' placeholder='請輸入學號'/>
+    <input type='text' name='check_week' placeholder='請輸入週數'/>
     <button type='submit'>補點</button>
+    </form>
+
+    <br>
+    <form method='POST' action=''>
+    <input type='text' name='delete_id' placeholder='請輸入學號'/>
+    <button type='submit'>刪除學生</button>
     </form>
 </div>
 
 
 <?php
-$id = $_POST['id'];
-$week = $_POST['week'];
-$check = $conn ->query("
-UPDATE `資料庫程式設計` SET `attend$week` ='$now' WHERE `id`='$id'
-");
-$check -> execute();
+
+if(!empty($_POST['check_id']))
+{
+    $check_id = $_POST['check_id'];
+
+    if(empty($_POST['check_week']))$_POST['check_week'] = 1 ;
+    $check_week = $_POST['check_week'];
+
+    $classname = $_POST['class_name'];
+
+    $check = $conn ->query("
+                            UPDATE `$classname` SET `attend$check_week` ='$now' WHERE `id`='$check_id'
+                            ");
+    $check -> execute();
+}
+
+
+//-----------------------------------------------------------------
+
+if(!empty($_POST['delete_id']))
+{
+    $delete_id = $_POST['delete_id'];
+    $classname = $_POST['class_name'];
+
+    $delete = $conn ->query("
+                            DELETE FROM `$classname` WHERE `id`='$delete_id'
+                            ");
+    $delete -> execute();
+}
 
 ?>
 
