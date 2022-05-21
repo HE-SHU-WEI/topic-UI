@@ -132,9 +132,11 @@ table{
 
 <?php
 $id = $_POST['id'];
+if(empty($_POST['week']))$_POST['week'] = 1 ;
 $week = $_POST['week'];
+$classname = $_POST['class_name'];
 $check = $conn ->query("
-UPDATE `資料庫程式設計` SET `attend$week` ='$now' WHERE `id`='$id'
+UPDATE `$classname` SET `attend$week` ='$now' WHERE `id`='$id'
 ");
 $check -> execute();
 
