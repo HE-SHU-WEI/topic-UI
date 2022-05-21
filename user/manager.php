@@ -19,7 +19,7 @@ try {
         if(empty($_POST['year']))$_POST['year']= 110;
         $y = $_POST['year'];
         
-        $txt =  '你好，'.$_SESSION['username']. '老師<br>';
+        $txt =  '你好，'.$_SESSION['username']. '管理者<br>';
         $logout =  '<a href="../logOut.php"> Log Out('.$_SESSION['username'].')</a>';
         
         $translate = $conn ->prepare("SELECT * FROM `$n`");
@@ -89,6 +89,7 @@ table{
             <?php
                 //  $tmp;
                  echo  '<option selected=selected >'. $_POST['class_name'].'</option>';
+                 $_SESSION['class_name'] = $_POST['class_name'];
                  
                     foreach ($result as $row){
                         // $tmp = $row["class_name"];
@@ -138,6 +139,7 @@ table{
 
 <?php
 
+$classname = $_SESSION['class_name'];
 if(!empty($_POST['check_id']))
 {
     $check_id = $_POST['check_id'];
@@ -145,7 +147,7 @@ if(!empty($_POST['check_id']))
     if(empty($_POST['check_week']))$_POST['check_week'] = 1 ;
     $check_week = $_POST['check_week'];
 
-    $classname = $_POST['class_name'];
+    
 
     $check = $conn ->query("
                             UPDATE `$classname` SET `attend$check_week` ='$now' WHERE `id`='$check_id'
@@ -159,7 +161,6 @@ if(!empty($_POST['check_id']))
 if(!empty($_POST['delete_id']))
 {
     $delete_id = $_POST['delete_id'];
-    $classname = $_POST['class_name'];
 
     $delete = $conn ->query("
                             DELETE FROM `$classname` WHERE `id`='$delete_id'

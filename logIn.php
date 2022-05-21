@@ -25,13 +25,14 @@
                         $row = mysqli_fetch_array($data);
                         $_SESSION['username'] = $row['realN'];
                         $_SESSION['user_id'] = $row['account'];
-                        if($row['account'][0] == '0'){
+                        
+                        if(substr($row['account'],0,1)=== '0'){
                             $home_url = 'user/teacher.php';
                         }
-                        if($row['account'][0] == '9'){
+                        if(substr($row['account'],0,1)=== '9'){
                             $home_url = 'user/manager.php';
                         }
-                        if($row['account'][0] == 'A'){
+                        if(substr($row['account'],0,1)=== 'A'){
                             $home_url = 'user/student.php';
                         }
                         header('Location: '.$home_url);
