@@ -124,6 +124,7 @@ table{
     <br>
     <form method='POST' action=''>
     <input type='text' name='id' placeholder='請輸入學號'/>
+    <input type='text' name='week' placeholder='請輸入週數'/>
     <button type='submit'>補點</button>
     </form>
 </div>
@@ -131,8 +132,9 @@ table{
 
 <?php
 $id = $_POST['id'];
+$week = $_POST['week'];
 $check = $conn ->query("
-UPDATE `資料庫程式設計` SET `attend1`='$now' WHERE `id`='$id'
+UPDATE `資料庫程式設計` SET `attend$week` ='$now' WHERE `id`='$id'
 ");
 $check -> execute();
 
@@ -146,10 +148,7 @@ $check -> execute();
     <?php
     if(!empty($_POST['class_name']))//判斷是否有查詢classname
     {   
-        $button = "<br>
         
-        <button type='submit'>VIEW</button>
-        ";
         $classname = $_POST['class_name'];
         //if attendN 是null 則顯示缺席
         $search= $conn ->query("SELECT * ,
