@@ -89,7 +89,7 @@ table{
             <?php
                 //  $tmp;
                  echo  '<option selected=selected >'. $_POST['class_name'].'</option>';
-                 $_SESSION['class_name'] = $_POST['class_name'];
+                 if(!empty($_POST['class_name']))$_SESSION['class_name'] = $_POST['class_name'];
                  
                     foreach ($result as $row){
                         // $tmp = $row["class_name"];
@@ -140,6 +140,7 @@ table{
 <?php
 
 $classname = $_SESSION['class_name'];
+
 if(!empty($_POST['check_id']))
 {
     $check_id = $_POST['check_id'];
@@ -161,7 +162,7 @@ if(!empty($_POST['check_id']))
 if(!empty($_POST['delete_id']))
 {
     $delete_id = $_POST['delete_id'];
-
+    
     $delete = $conn ->query("
                             DELETE FROM `$classname` WHERE `id`='$delete_id'
                             ");
