@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 require_once '..\set.php';//匯入設定
+
 // 儲存的圖片檔名
 $name = $_SESSION['username'];
 $now = date('YmdHis');
