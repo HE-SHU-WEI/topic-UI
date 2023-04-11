@@ -1,8 +1,22 @@
 # topic
-基本上是以home.html為出發點
+## 流程圖如下
+
+
 ```mermaid
 graph 
-A[home.html]-->B[註冊臉部訊息] --> C[進入Face資料夾]-->D[post.php <br> session username紀錄]--> E[face.html拍照<br>根據username跟時間來記錄]-->F[路徑記錄在path.txt<br>圖片存在資料夾]
-A --> 登入
+
+A[首頁<br>home.html]-->註冊臉部訊息-->進入Face資料夾-->B[記錄username<br>post.php]--> face.html呼叫javascript拍照-->C[路徑記錄在path.txt<br>圖片存在資料夾]-->remix.exe執行辨識轉成128特徵值-->根據username跟時間寫入DB
+
+
+A --> 登入 --> D[進入登入頁面<br>login.php]-->進入user資料夾 --> E[根據登入的身分切換到不同頁面]
+
+E-->F[管理者介面<br>manager.php]-->I
+E-->G[老師介面<br>teacher.php]-->I
+E-->H[學生介面<br>student.php]-->I
+
+I[登出<br>logout.php]
+
 ```
+
+
 **只要進入home.html頁面，session的username就會清除**
