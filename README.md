@@ -17,6 +17,9 @@ E-->H[學生介面<br>student.php]-->I
 I[登出<br>logout.php]
 
 ```
+##以下粗略介紹各檔案的用途
+
+:::info
 ### home.html
 **只要進入home.html頁面，session的username就會清除**
 
@@ -25,6 +28,8 @@ I[登出<br>logout.php]
 
 ### set.php
 與DB的設定檔在裡面
+
+:::
 
 ### Face 資料夾
 post.php
@@ -41,5 +46,17 @@ CSV.php
 將remix.exe的執行結果寫入DB
 
 ### user 資料夾
+manager.php
+
+
+teacher.php
+
+
+student.php
+
+
+
+
+
 
 
