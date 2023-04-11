@@ -18,5 +18,16 @@ I[登出<br>logout.php]
 
 ```
 
+### Face 資料夾
+### 
 
+
+### home.html
 **只要進入home.html頁面，session的username就會清除**
+
+### logxx.php
+負責登入登出
+
+### 
+
+
