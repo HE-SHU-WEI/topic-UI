@@ -27,12 +27,18 @@ I[登出<br>logout.php]
 與DB的設定檔在裡面
 
 ### Face 資料夾
->action.php
+post.php
+登入系統
+將使用者的科系年級姓名紀錄，之後用於寫入DB
+
+face.html
+呼叫JS資料夾中的webcam.js來拍照
+
+action.php
 設定拍照的檔案存取地點
->CSV.php
 
->post.php
-
+CSV.php
+將remix.exe的執行結果寫入DB
 
 ### user 資料夾
 
