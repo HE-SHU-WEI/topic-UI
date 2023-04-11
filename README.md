@@ -28,7 +28,9 @@ I[登出<br>logout.php]
 
 ### Face 資料夾
 >action.php
+設定拍照的檔案存取地點
 >CSV.php
+
 >post.php
 
 
