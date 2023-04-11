@@ -19,7 +19,6 @@ I[登出<br>logout.php]
 ```
 ##以下粗略介紹各檔案的用途
 
-:::info
 ### home.html
 **只要進入home.html頁面，session的username就會清除**
 
@@ -29,9 +28,7 @@ I[登出<br>logout.php]
 ### set.php
 與DB的設定檔在裡面
 
-:::
 
-:::success
 ### Face 資料夾
 post.php
 登入系統
@@ -43,20 +40,24 @@ face.html
 action.php
 設定拍照的檔案存取地點
 
+remix.exe
+本體是用python做的人臉辨識模型，需要做
+
 CSV.php
 將remix.exe的執行結果寫入DB
 
-:::
+
 
 ### user 資料夾
 manager.php
-
+管理者介面，可以刪除學生、補點、查詢課程
+**新增學生需要在DB匯入，可單筆可多筆**
 
 teacher.php
-
+老師介面，可以補點、查詢課程學生名單、點名情況
 
 student.php
-
+學生介面，可以查詢點名情況
 
 
 
