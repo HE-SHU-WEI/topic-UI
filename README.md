@@ -17,7 +17,7 @@ E-->H[學生介面<br>student.php]-->I
 I[登出<br>logout.php]
 
 ```
-##以下粗略介紹各檔案的用途
+## 以下粗略介紹各檔案的用途
 
 ### home.html
 **只要進入home.html頁面，session的username就會清除**
